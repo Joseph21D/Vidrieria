@@ -36,14 +36,6 @@
 
                             <h6>Descripción:</h6>
                             <p><?php echo $data['producto']['descripcion']; ?></p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Avaliable Color :</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted"><strong>White / Black</strong></p>
-                                </li>
-                            </ul>
 
                             <h6>Specification:</h6>
                             <ul class="list-unstyled pb-3">
@@ -59,17 +51,6 @@
                             <form action="" method="GET">
                                 <input type="hidden" id="idProducto" value="<?php echo $data['producto']['id']; ?>">
                                 <div class="row">
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Size :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">S</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">M</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">L</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">XL</span></li>
-                                        </ul>
-                                    </div>
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
