@@ -6,6 +6,6 @@ const PASS = "";
 const DB = "vidrieria";
 const CHARSET = "charset=utf8";
 const TITLE = "Vidrieria Velasquez";
-const MONEDA = "$";
+const MONEDA = "S/.";
 const CLIENT_ID = "";
 ?>
