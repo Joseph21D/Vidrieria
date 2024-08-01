@@ -30,16 +30,41 @@ document.addEventListener("DOMContentLoaded", function () {
       if (this.readyState == 4 && this.status == 200) {
         const res = JSON.parse(this.responseText);
         Swal.fire({
-            title: "¡AVISO!",
-            text: res.msg,
-            icon: res.icono,
+          title: "¡AVISO!",
+          text: res.msg,
+          icon: res.icono,
         });
-        if(res.icono == "success"){
+        if (res.icono == "success") {
           setTimeout(() => {
-                window.location.reload();
-            }, 2000);
+            enviarCorreo(correoRegistro.value, res.token);
+          }, 2000);
         }
       }
     };
   });
 });
+
+function enviarCorreo(correo, token) {
+  let formData = new FormData();
+  formData.append("correo", correo);
+  formData.append("token", token);
+  const url = base_url + "clientes/enviarCorreo";
+  const http = new XMLHttpRequest();
+  http.open("POST", url, true);
+  http.send(formData);
+  http.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const res = JSON.parse(this.responseText);
+      Swal.fire({
+        title: "¡AVISO!",
+        text: res.msg,
+        icon: res.icono,
+      });
+      if (res.icono == "success") {
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    }
+  };
+}
