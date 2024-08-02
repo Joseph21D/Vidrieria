@@ -18,29 +18,41 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   // Registro
   registrarse.addEventListener("click", function () {
-    let formData = new FormData();
-    formData.append("nombre", nombreRegistro.value);
-    formData.append("correo", correoRegistro.value);
-    formData.append("clave", claveRegistro.value);
-    const url = base_url + "clientes/registroDirecto";
-    const http = new XMLHttpRequest();
-    http.open("POST", url, true);
-    http.send(formData);
-    http.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        const res = JSON.parse(this.responseText);
-        Swal.fire({
-          title: "¡AVISO!",
-          text: res.msg,
-          icon: res.icono,
-        });
-        if (res.icono == "success") {
-          setTimeout(() => {
-            enviarCorreo(correoRegistro.value, res.token);
-          }, 2000);
+    if (
+      nombreRegistro.value == "" ||
+      correoRegistro.value == "" ||
+      claveRegistro.value == ""
+    ) {
+      Swal.fire({
+        title: "¡AVISO!",
+        text: "Todos los campos son Requeridos",
+        icon: "warning",
+      });
+    } else {
+      let formData = new FormData();
+      formData.append("nombre", nombreRegistro.value);
+      formData.append("correo", correoRegistro.value);
+      formData.append("clave", claveRegistro.value);
+      const url = base_url + "clientes/registroDirecto";
+      const http = new XMLHttpRequest();
+      http.open("POST", url, true);
+      http.send(formData);
+      http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const res = JSON.parse(this.responseText);
+          Swal.fire({
+            title: "¡AVISO!",
+            text: res.msg,
+            icon: res.icono,
+          });
+          if (res.icono == "success") {
+            setTimeout(() => {
+              enviarCorreo(correoRegistro.value, res.token);
+            }, 2000);
+          }
         }
-      }
-    };
+      };
+    }
   });
 });
 
