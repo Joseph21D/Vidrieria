@@ -102,10 +102,15 @@ https://templatemo.com/tm-559-zay-shop
                         <i class="fas fa-fw fa-heart text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark" id="btnCantidadDeseo">0</span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                        <i class="fas fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                    <?php if (!empty($_SESSION['correoCliente'])) { ?>
+                        <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'clientes' ?>">
+                        <img class="img-thumbnail" src="<?php echo BASE_URL . 'assets/img/default.png' ?>" alt="Logo-Cliente" width="50">
                     </a>
+                    <?php } else { ?>
+                        <a class="nav-icon position-relative text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                        <i class="fas fa-fw fa-user text-dark mr-3"></i>
+                    </a>
+                    <?php } ?>
                 </div>
             </div>
 

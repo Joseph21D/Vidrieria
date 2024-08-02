@@ -3,10 +3,17 @@ const btnLogin = document.querySelector("#btnLogin");
 const frmLogin = document.querySelector("#frmLogin");
 const frmRegister = document.querySelector("#frmRegister");
 const registrarse = document.querySelector("#registrarse");
+const login = document.querySelector("#login");
 // Datos de Registro
 const nombreRegistro = document.querySelector("#nombreRegistro");
 const correoRegistro = document.querySelector("#correoRegistro");
 const claveRegistro = document.querySelector("#claveRegistro");
+// Datos de Login
+const correoLogin = document.querySelector("#correoLogin");
+const claveLogin = document.querySelector("#claveLogin");
+
+var modalLogin = new bootstrap.Modal(document.getElementById('modalLogin'))
+
 document.addEventListener("DOMContentLoaded", function () {
   btnRegister.addEventListener("click", function () {
     frmLogin.classList.add("d-none");
@@ -54,6 +61,39 @@ document.addEventListener("DOMContentLoaded", function () {
       };
     }
   });
+  // Login
+  login.addEventListener("click", function () {
+    if (correoLogin.value == "" || claveLogin.value == "") {
+      Swal.fire({
+        title: "¡AVISO!",
+        text: "Todos los campos son Requeridos",
+        icon: "warning",
+      });
+    } else {
+      let formData = new FormData();
+      formData.append("correoLogin", correoLogin.value);
+      formData.append("claveLogin", claveLogin.value);
+      const url = base_url + "clientes/loginDirecto";
+      const http = new XMLHttpRequest();
+      http.open("POST", url, true);
+      http.send(formData);
+      http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          const res = JSON.parse(this.responseText);
+          Swal.fire({
+            title: "¡AVISO!",
+            text: res.msg,
+            icon: res.icono,
+          });
+          if (res.icono == "success") {
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+          }
+        }
+      };
+    }
+  });
 });
 
 function enviarCorreo(correo, token) {
@@ -79,4 +119,9 @@ function enviarCorreo(correo, token) {
       }
     }
   };
+}
+
+function abrirModalLogin() {
+  myModal.hide();
+  modalLogin.show();
 }
