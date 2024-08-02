@@ -20,7 +20,10 @@
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL . 'assets/css/slick.min.css'; ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL . 'assets/css/slick-theme.css'; ?>">
-<!--
+
+    <!-- PayPal -->
+    <script src="https://www.paypal.com/sdk/js?client-id=<?php echo CLIENT_ID; ?>&currency=<?php echo MONEDAPAYPAL; ?>"></script>
+    <!--
     
 TemplateMo 559 Zay Shop
 
@@ -56,9 +59,9 @@ https://templatemo.com/tm-559-zay-shop
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="<?php echo BASE_URL;?>">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="<?php echo BASE_URL; ?>">
                 VVelasquez
-                <!-- <?php echo TITLE;?> -->
+                <!-- <?php echo TITLE; ?> -->
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +72,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL;?>">Principal</a>
+                            <a class="nav-link" href="<?php echo BASE_URL; ?>">Principal</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo BASE_URL . 'principal/about' ?>">Información</a>
@@ -104,12 +107,12 @@ https://templatemo.com/tm-559-zay-shop
                     </a>
                     <?php if (!empty($_SESSION['correoCliente'])) { ?>
                         <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'clientes' ?>">
-                        <img class="img-thumbnail" src="<?php echo BASE_URL . 'assets/img/default.png' ?>" alt="Logo-Cliente" width="50">
-                    </a>
+                            <img class="img-thumbnail" src="<?php echo BASE_URL . 'assets/img/default.png' ?>" alt="Logo-Cliente" width="50">
+                        </a>
                     <?php } else { ?>
                         <a class="nav-icon position-relative text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                        <i class="fas fa-fw fa-user text-dark mr-3"></i>
-                    </a>
+                            <i class="fas fa-fw fa-user text-dark mr-3"></i>
+                        </a>
                     <?php } ?>
                 </div>
             </div>

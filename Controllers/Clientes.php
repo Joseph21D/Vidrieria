@@ -12,7 +12,6 @@ class Clientes extends Controller
     {
         parent::__construct();
         session_start();
-        session_destroy();
     }
 
     // Vista Principal
@@ -112,7 +111,7 @@ class Clientes extends Controller
                 $clave = $_POST['claveLogin'];
                 $verificar = $this->model->getVerificar($correo);
                 if (!empty($verificar)) {
-                     if (password_verify($clave, $verificar['clave'])) {
+                    if (password_verify($clave, $verificar['clave'])) {
                         $_SESSION['correoCliente'] = $verificar['correo'];
                         $_SESSION['nombreCliente'] = $verificar['nombre'];
                         $mensaje = array('msg' => 'OK', 'icono' => 'success');
@@ -128,4 +127,3 @@ class Clientes extends Controller
         }
     }
 }
-

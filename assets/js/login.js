@@ -12,7 +12,7 @@ const claveRegistro = document.querySelector("#claveRegistro");
 const correoLogin = document.querySelector("#correoLogin");
 const claveLogin = document.querySelector("#claveLogin");
 
-var modalLogin = new bootstrap.Modal(document.getElementById('modalLogin'))
+var modalLogin = new bootstrap.Modal(document.getElementById("modalLogin"));
 
 document.addEventListener("DOMContentLoaded", function () {
   btnRegister.addEventListener("click", function () {

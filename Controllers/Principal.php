@@ -1,7 +1,8 @@
 <?php
 class Principal extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         session_start();
     }
@@ -48,13 +49,13 @@ class Principal extends Controller
         $id_categoria = 1;
         $page = 1;
         $array = explode(',', $datos);
-        if(isset($array[0])) {
-            if(!empty($array[0])) {
+        if (isset($array[0])) {
+            if (!empty($array[0])) {
                 $id_categoria = $array[0];
             }
         }
-        if(isset($array[1])) {
-            if(!empty($array[1])) {
+        if (isset($array[1])) {
+            if (!empty($array[1])) {
                 $page = $array[1];
             }
         }
@@ -106,6 +107,7 @@ class Principal extends Controller
             $total += $subTotal;
         }
         $array['total'] = number_format($total, 2);
+        $array['totalPaypal'] = $total;
         $array['moneda'] = MONEDA;
         echo json_encode($array, JSON_UNESCAPED_UNICODE);
         die();
