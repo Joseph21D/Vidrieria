@@ -73,21 +73,22 @@ function botonPaypal(total) {
 
       onApprove: (data, actions) => {
         return actions.order.capture().then(function (orderData) {
-          console.log(
-            "Capture result",
-            orderData,
-            JSON.stringify(orderData, null, 2)
-          );
-          var transaction = orderData.purchase_units[0].payments.captures[0];
-          alert(
-            "Transaction " +
-              transaction.status +
-              ": " +
-              transaction.id +
-              "\n\nSee console for all available details"
-          );
+          registrarPedido(orderData);
         });
       },
     })
     .render("#paypal-button-container");
+}
+
+function registrarPedido(datos){
+  const url = base_url + "clientes/registrarPedido";
+  const http = new XMLHttpRequest();
+  http.open("POST", url, true);
+  http.send(JSON.stringify(datos));
+  http.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      //const res = JSON.parse(this.responseText);
+    }
+  };
 }
