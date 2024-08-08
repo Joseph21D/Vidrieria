@@ -18,10 +18,10 @@
                         <table class="table table-bordere table-striped table-hover align-middle" id = "tableListaDeseo" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Producto</th>
-                                    <th>Precio</th>
-                                    <th>Cantidad</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Producto</th>
+                                    <th class="text-center">Precio</th>
+                                    <th class="text-center">Cantidad</th>
                                     <th></th>
                                 </tr>
                             </thead>

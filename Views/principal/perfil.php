@@ -8,13 +8,13 @@
                 <div class="card shadow-lg">
                     <div class="card-body">
                         <table class="table table-bordered table-striped table-hover align-middle" id="tableListaProductos">
-                            <thead>
+                            <thead class="table-success">
                                 <tr>
-                                    <th>#</th>
-                                    <th>Producto</th>
-                                    <th>Precio</th>
-                                    <th>Cantidad</th>
-                                    <th>SubTotal</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Producto</th>
+                                    <th class="text-center">Precio</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-center">SubTotal</th>
                                 </tr>
                             </thead>
                             <tbody>

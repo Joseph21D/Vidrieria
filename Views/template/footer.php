@@ -11,11 +11,11 @@
                     <table class="table table-bordered table-striped table-hover align-middle" id="tableListaCarrito">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Producto</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>SubTotal</th>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Producto</th>
+                                <th class="text-center">Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">SubTotal</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-around mb-3">
-                <h3 id="totalGeneral"></h3>
+                <h3 id="totalGeneral" class="fs-4"></h3>
                 <?php if (!empty($_SESSION['correoCliente'])) { ?>
                     <a class="btn btn-outline-primary" href="<?php echo BASE_URL . 'clientes'; ?>">Procesar</a>
                 <?php } else { ?>

@@ -16,30 +16,39 @@ function getListaProductos() {
       let html = "";
       res.productos.forEach((producto) => {
         html += `<tr>
-                    <td>
+                    <td class="text-center">
                         <img class="img-thumbnail rounded-circle" src="${
-                            producto.imagen
+                          producto.imagen
                         }" alt="" width="100">  
                     </td>
-                    <td>${producto.nombre}</td>
                     <td>
-                        <span class="badge bg-warning">${
-                            res.moneda + " " + producto.precio
+                        ${producto.nombre}
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-warning fs-6">${
+                          res.moneda + producto.precio
                         }</span>
                     </td>
-                    <td>
-                        <span class="badge bg-primary">${
-                            producto.cantidad
+                    <td class="text-center">
+                        <span class="badge bg-primary fs-6">${
+                          producto.cantidad
                         }</span>
                     </td>
-                    <td>
-                        ${producto.subTotal}
+                    <td class="text-center">
+                        <span class="badge bg-success fs-6">${
+                          res.moneda + producto.subTotal
+                        }</span>
                     </td>
                 </tr>`;
       });
       tableLista.innerHTML = html;
-      document.querySelector("#totalProducto").textContent =
-        "Total: " + res.moneda + res.total;
+      document.querySelector("#totalProducto").innerHTML = `
+        <div class="d-flex justify-content-end align-items-center">
+          <h5 class="mb-0 me-3 text-primary fw-bold fs-4"><strong>TOTAL:</strong></h5>
+          <span class="badge bg-light me-2 fs-5 text-dark">${res.moneda + res.total} o $/${
+        res.totalPaypal
+      }</span>
+        </div>`;
       botonPaypal(res.totalPaypal);
     }
   };
@@ -80,7 +89,7 @@ function botonPaypal(total) {
     .render("#paypal-button-container");
 }
 
-function registrarPedido(datos){
+function registrarPedido(datos) {
   const url = base_url + "clientes/registrarPedido";
   const http = new XMLHttpRequest();
   http.open("POST", url, true);

@@ -107,7 +107,7 @@ class Principal extends Controller
             $total += $subTotal;
         }
         $array['total'] = number_format($total, 2);
-        $array['totalPaypal'] = $total;
+        $array['totalPaypal'] = number_format($total/PRECIO, 2);
         $array['moneda'] = MONEDA;
         echo json_encode($array, JSON_UNESCAPED_UNICODE);
         die();

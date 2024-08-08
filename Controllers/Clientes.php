@@ -12,6 +12,7 @@ class Clientes extends Controller
     {
         parent::__construct();
         session_start();
+        session_destroy();
     }
 
     // Vista Principal

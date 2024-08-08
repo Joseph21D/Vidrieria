@@ -128,34 +128,34 @@ function getListaCarrito() {
       let html = "";
       res.productos.forEach((producto) => {
         html += `<tr>
-                            <td>
-                                <img class="img-thumbnail rounded-circle" src="${
-                                  producto.imagen
-                                }" alt="" width="100">  
-                            </td>
-                            <td>${producto.nombre}</td>
-                            <td>
-                                <span class="badge bg-warning">${
-                                  res.moneda + " " + producto.precio
-                                }</span>
-                            </td>
-                            <td>
-                                <span class="badge bg-primary">${
-                                  producto.cantidad
-                                }</span>
-                            </td>
-                            <td>
-                                ${producto.subTotal}
-                            </td>
-                            <td>
-                                <button class="btn btn-danger btnDeleteCart" type="button" prod="${
-                                  producto.id
-                                }"><i class="fas fa-times-circle"></i></button>
-                            </td>
-                        </tr>`;
+                    <td class="text-center">
+                        <img class="img-thumbnail rounded-circle" src="${
+                          producto.imagen
+                        }" alt="" width="100">  
+                    </td>
+                    <td class="text-center">${producto.nombre}</td>
+                    <td class="text-center">
+                        <span class="badge bg-warning">${
+                          res.moneda + " " + producto.precio
+                        }</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-primary">${
+                          producto.cantidad
+                        }</span>
+                    </td>
+                    <td class="text-center">
+                        ${res.moneda + producto.subTotal}
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-danger btnDeleteCart" type="button" prod="${
+                          producto.id
+                        }"><i class="fas fa-times-circle"></i></button>
+                    </td>
+                </tr>`;
       });
       tableListaCarrito.innerHTML = html;
-      document.querySelector("#totalGeneral").textContent = res.total;
+      document.querySelector("#totalGeneral").textContent = res.moneda + res.total;
       btnEliminarCarrito();
     }
   };
