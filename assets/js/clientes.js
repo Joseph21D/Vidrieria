@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
       url: base_url + "/clientes/listarPendientes",
       dataSrc: "",
     },
-    columns: [{ data: "id_transaccion" }, { data: "monto" }, { data: "fecha" }],
+    columns: [{ data: "id_transaccion" }, { data: "monto" }, { data: "fecha" }, {data: "accion"}],
     layout: {
       top: ["pageLength", "buttons", "search"],
       topStart: null,
@@ -139,4 +139,40 @@ function registrarPedido(datos) {
       }
     }
   };
+}
+
+function verPedido(idPedido){
+  var mPedido = new bootstrap.Modal(document.getElementById("modalPedido"));
+  const url = base_url + "clientes/verPedido/" + idPedido;
+  const http = new XMLHttpRequest();
+  http.open("GET", url, true);
+  http.send();
+  http.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const res = JSON.parse(this.responseText);
+      let html = "";
+      res.productos.forEach((row) => {
+        let subTotal = parseFloat(row.precio)*parseInt(row.cantidad)
+        html += `<tr>
+                    <td class="text-center">${row.producto}</td>
+                    <td class="text-center">
+                        <span class="badge bg-warning">${
+                          res.moneda + " " + row.precio
+                        }</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-primary">${
+                          row.cantidad
+                        }</span>
+                    </td>
+                    <td class="text-center">
+                        ${res.moneda + subTotal.toFixed(2)}
+                    </td>
+                </tr>`;
+      });
+      document.querySelector('#tablePedidos').innerHTML = html;
+      mPedido.show();
+    }
+  };
+ 
 }

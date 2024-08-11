@@ -80,19 +80,20 @@
                 <div class="col-12">
                     <div class="card shadow-lg">
                         <div class="card-body">
-                        <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-hover" id="tblPendientes" style="width: 100%">
-                            <thead class="bg-success text-white">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Monto</th>
-                                    <th>Fecha</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover" id="tblPendientes" style="width: 100%">
+                                    <thead class="bg-success text-white">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Monto</th>
+                                            <th>Fecha</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,8 +112,58 @@
     <?php } ?>
 </div>
 <!-- End Content -->
+<div id="modalPedido" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Estado del Pedido</h5>
+                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 pb-5">
+                        <div class="h-100 py-5 services-icon-wap shadow">
+                            <div class="h1 text-success text-center"><i class="fa fa-truck fa-lg"></i></div>
+                            <h2 class="h5 mt-4 text-center">Enviado</h2>
+                        </div>
+                    </div>
 
-<?php include_once 'Views/template/footer.php'; ?>
+                    <div class="col-md-6 col-lg-4 pb-5">
+                        <div class="h-100 py-5 services-icon-wap shadow">
+                            <div class="h1 text-success text-center"><i class="fas fa-exchange-alt"></i></div>
+                            <h2 class="h5 mt-4 text-center">Proceso</h2>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 pb-5">
+                        <div class="h-100 py-5 services-icon-wap shadow">
+                            <div class="h1 text-success text-center"><i class="fa fa-percent"></i></div>
+                            <h2 class="h5 mt-4 text-center">Completado</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                        <table class="table table-bordere table-striped table-hover align-middle" id = "tablePedidos" style="width: 100%;">
+                            <thead class="bg-success text-white">
+                                <tr>
+                                    <th class="text-center">Producto</th>
+                                    <th class="text-center">Precio</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-center">SubTotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include_once 'Views/template/footer.php'; ?>
 
 <script type="text/javascript" src="<?php echo BASE_URL . 'assets/DataTables/datatables.min.js'; ?>"></script>
 <script src="<?php echo BASE_URL . 'assets/js/es-ES.js'; ?> "></script>
