@@ -16,7 +16,7 @@
                 <div class="card-body shadow-lg">
                     <div class="table-responsive">
                         <table class="table table-bordere table-striped table-hover align-middle" id = "tableListaDeseo" style="width: 100%;">
-                            <thead>
+                            <thead class="bg-success text-white">
                                 <tr>
                                     <th class="text-center">#</th>
                                     <th class="text-center">Producto</th>

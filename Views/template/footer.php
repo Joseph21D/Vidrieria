@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover align-middle" id="tableListaCarrito">
-                        <thead>
+                        <thead class="bg-success text-white">
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">Producto</th>

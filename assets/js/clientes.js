@@ -7,14 +7,17 @@ document.addEventListener("DOMContentLoaded", function () {
   // DATOS PENDIENTES
   $("#tblPendientes").DataTable({
     ajax: {
-      url: base_url + '/clientes/listarPendientes',
-      dataSrc: ""
+      url: base_url + "/clientes/listarPendientes",
+      dataSrc: "",
     },
-    columns: [
-      { data: "id_transaccion" },
-      { data: "monto" },
-      { data: "fecha" }
-    ],
+    columns: [{ data: "id_transaccion" }, { data: "monto" }, { data: "fecha" }],
+    layout: {
+      top: ["pageLength", "buttons", "search"],
+      topStart: null,
+      topEnd: null
+    },
+    buttons,
+    language,
   });
 });
 
