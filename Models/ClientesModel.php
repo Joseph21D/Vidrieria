@@ -57,5 +57,30 @@ class ClientesModel extends Query{
         }
         return $res;
     }
+
+    public function getProducto($id_producto)
+    {
+        $sql = "SELECT * FROM productos WHERE id = $id_producto";
+        return $this->select($sql);
+    }
+
+    public function registrarDetalle($producto, $precio, $cantidad, $id_pedido) 
+    {
+        $sql = "INSERT INTO detalle_pedidos (producto, precio, cantidad, id_pedido) VALUES (?,?,?,?)";
+        $datos = array($producto, $precio, $cantidad, $id_pedido);
+        $data = $this->insertar($sql, $datos);
+        if($data > 0){
+            $res = $data;
+        } else {
+            $res = 0;
+        }
+        return $res;
+    }
+
+    public function getPedidos($proceso)
+    {
+        $sql = "SELECT * FROM pedidos WHERE proceso = $proceso";
+        return $this->selectAll($sql);
+    }
 }
 ?>

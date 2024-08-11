@@ -12,7 +12,7 @@ class Clientes extends Controller
     {
         parent::__construct();
         session_start();
-        session_destroy();
+        // session_destroy();
     }
 
     // Vista Principal
@@ -62,21 +62,19 @@ class Clientes extends Controller
             $mail = new PHPMailer(true);
             try {
                 //Server settings
-                $mail->SMTPDebug = 0;                      //Enable verbose debug output
-                $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = HOST_SMTP;                     //Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = USER_SMTP;                     //SMTP username
-                $mail->Password   = PASS_SMTP;                               //SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-                $mail->Port       = PUERTO_SMTP;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-                //Recipients
+                $mail->SMTPDebug = 0; 
+                $mail->isSMTP();
+                $mail->Host       = HOST_SMTP;
+                $mail->SMTPAuth   = true;
+                $mail->Username   = USER_SMTP;
+                $mail->Password   = PASS_SMTP;
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port       = PUERTO_SMTP;
                 $mail->setFrom('jomadica1721@gmail.com', TITLE);
                 $mail->addAddress($_POST['correo']);
 
                 //Content
-                $mail->isHTML(true);                                  //Set email format to HTML
+                $mail->isHTML(true);
                 $mail->Subject = 'Mensaje desde la: ' . TITLE;
                 $mail->Body    = 'Para verificar tu correo en nuestra tienda <a href = "' . BASE_URL . 'clientes/verificarCorreo/' . ($_POST['token']) . '">Click Aquí</a>';
                 $mail->AltBody = 'Gracias por la Preferencia';
@@ -132,19 +130,40 @@ class Clientes extends Controller
     {
         $datos = file_get_contents("php://input");
         $json = json_decode($datos, true);
-        if (is_array($json)) {
-            $id_transaccion = $json['id'];
-            $monto = $json['purchase_units'][0]['amount']['value'];
-            $estado = $json['status'];
+        $pedios = $json['pedios'];
+        $productos = $json['productos'];
+        if (is_array($pedios) && is_array($productos)) {
+            $id_transaccion = $pedios['id'];
+            $monto = $pedios['purchase_units'][0]['amount']['value'];
+            $estado = $pedios['status'];
             $fecha = date('Y-m-d H:i:s');
-            $email = $json['payer']['email_address'];
-            $nombre = $json['payer']['name']['given_name'];
-            $apellido = $json['payer']['name']['surname'];
+            $email = $pedios['payer']['email_address'];
+            $nombre = $pedios['payer']['name']['given_name'];
+            $apellido = $pedios['payer']['name']['surname'];
             $direccion = "Av. Fernando Belaunde Terry";
             $ciudad = "Collique - Comas";
             $email_user = $_SESSION['correoCliente'];
             $data = $this->model->registrarPedido($id_transaccion, $monto, $estado, $fecha, $email, $nombre, $apellido, $direccion, $ciudad, $email_user);
-            print_r($data);
+            if($data > 0){
+                foreach ($productos as $producto) {
+                    $temp = $this->model->getProducto($producto['idProducto']);
+                    $this->model->registrarDetalle($temp['nombre'], $temp['precio'], $producto['cantidad'], $data);
+                }
+                $mensaje = array('msg' => 'Pedido Registrado', 'icono' => 'success');
+            } else{
+                $mensaje = array('msg' => 'Error al registrar el Pedido', 'icono' => 'error');
+            }
+        } else {
+            $mensaje = array('msg' => 'Error Fatal', 'icono' => 'error');
         }
+        echo json_encode($mensaje);
+        die();
+    }
+
+    public function listarPendientes()
+    {
+        $data = $this->model->getPedidos(1);
+        echo json_encode($data);
+        die();
     }
 }

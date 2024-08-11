@@ -41,10 +41,26 @@ function obtenerPrecio()
     $response = curl_exec($curl);
     curl_close($curl);
 
+    if ($response === false) {
+        error_log('Error al obtener el tipo de cambio de la API');
+        return null;
+    }
+
     // Datos listos para usar
     $tipoCambioSunat = json_decode($response);
-    return $tipoCambioSunat->precioVenta;
+    if (isset($tipoCambioSunat->precioVenta)) {
+        return $tipoCambioSunat->precioVenta;
+    } else {
+        error_log('La respuesta de la API no contiene la propiedad precioVenta');
+        return null;
+    }
 }
 
-define('PRECIO', obtenerPrecio());
+$precioVenta = obtenerPrecio();
+if ($precioVenta !== null) {
+    define('PRECIO', $precioVenta);
+} else {
+    define('PRECIO', 0);
+    error_log('No se pudo definir la constante PRECIO');
+}
 ?>
