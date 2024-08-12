@@ -76,7 +76,7 @@ class Principal extends Controller
     public function contact()
     {
         $data['perfil'] = 'no';
-        $data['title'] = 'Contactos';
+        $data['title'] = 'Contáctanos';
         $this->views->getView('principal', "contact", $data);
     }
 
@@ -84,7 +84,7 @@ class Principal extends Controller
     public function deseo()
     {
         $data['perfil'] = 'no';
-        $data['title'] = 'Lista de Deseos';
+        $data['title'] = 'LISTA DE DESEOS';
         $this->views->getView('principal', "deseo", $data);
     }
 

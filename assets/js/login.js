@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <i class="text-muted fa fa-star"></i>
                                     <i class="text-muted fa fa-star"></i>
                                 </li>
-                                <li class="text-muted text-right">${ producto.precio }</li>
+                                <li class="text-muted text-right">${ 'S/.' + producto.precio }</li>
                             </ul>
                             <a href="${ base_url + 'principal/detail/' + producto.id }" class="h2 text-decoration-none text-dark">${ producto.nombre }</a>
                             <p class="card-text">

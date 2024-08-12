@@ -16,14 +16,14 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="h2"><?php echo $data['producto']['nombre']; ?></h1>
-                            <p class="h3 py-2"><?php echo MONEDA . ' ' . $data['producto']['precio'] . ' 𝔁 Metro Cuadrado'; ?></p>
+                            <p class="h3 py-2"><?php echo MONEDA . ' ' . $data['producto']['precio']; ?></p>
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
+                                <span class="list-inline-item text-dark">Calificación 4.8 | 36 Reseñas</span>
                             </p>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
@@ -36,17 +36,6 @@
 
                             <h6>Descripción:</h6>
                             <p><?php echo $data['producto']['descripcion']; ?></p>
-
-                            <h6>Specification:</h6>
-                            <ul class="list-unstyled pb-3">
-                                <li>Lorem ipsum dolor sit</li>
-                                <li>Amet, consectetur</li>
-                                <li>Adipiscing elit,set</li>
-                                <li>Duis aute irure</li>
-                                <li>Ut enim ad minim</li>
-                                <li>Dolore magna aliqua</li>
-                                <li>Excepteur sint</li>
-                            </ul>
 
                             <form action="" method="GET">
                                 <input type="hidden" id="idProducto" value="<?php echo $data['producto']['id']; ?>">

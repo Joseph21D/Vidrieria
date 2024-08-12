@@ -19,7 +19,7 @@
 
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL . 'assets/css/slick.min.css'; ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL . 'assets/css/slick.min.css'; ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL . 'assets/css/slick-theme.min.css'; ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL . 'assets/DataTables/datatables.min.css'; ?>">
 
     <!-- PayPal -->
@@ -85,7 +85,7 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="<?php echo BASE_URL . 'principal/shop' ?>">Tienda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL . 'principal/contact' ?>">Contactos</a>
+                            <a class="nav-link" href="<?php echo BASE_URL . 'principal/contact' ?>">Contáctanos</a>
                         </li>
                     </ul>
                 </div>

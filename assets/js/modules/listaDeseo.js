@@ -14,17 +14,17 @@ function getListaDeseo(){
             let html = '';
             res.productos.forEach(producto => {
                 html += `<tr>
-                            <td>
+                            <td class="text-center">
                                 <img class="img-thumbnail rounded-circle" src="${producto.imagen}" alt="" width="100">  
                             </td>
-                            <td>${producto.nombre}</td>
-                            <td>
+                            <td class="text-center">${producto.nombre}</td>
+                            <td class="text-center">
                                 <span class="badge bg-warning">${res.moneda + ' ' + producto.precio}</span>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <span class="badge bg-primary">${producto.cantidad}</span>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <button class="btn btn-danger btnEliminarDeseo" type="button" prod="${producto.id}"><i class="fas fa-trash"></i></button>
                                 <button class="btn btn-primary btnAddCart" type="button" prod="${producto.id}"><i class="fas fa-cart-plus"></i></button>
                             </td>

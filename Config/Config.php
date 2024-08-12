@@ -16,7 +16,17 @@ const HOST_SMTP = "smtp.gmail.com";
 
 function obtenerPrecio()
 {
-    $token = 'apis-token-9859.3YF3ZIMLTLgWwtgJdWLNhwzPuEpN9feV';
+    $cacheFile = 'precio_cache.json';
+    $cacheTime = 86400;
+
+    // Verifica si existe el archivo de caché y si no ha expirado
+    if (file_exists($cacheFile) && (time() - filemtime($cacheFile) < $cacheTime)) {
+        // Cargar precio desde caché
+        $data = json_decode(file_get_contents($cacheFile), true);
+        return $data['precioVenta'];
+    }
+
+    $token = 'apis-token-9909.jpXtIt8AmFDw5ANLJNgr--hyddAOGXr7';
     $fecha = date('Y-m-d');
 
     // Iniciar llamada a API
@@ -49,6 +59,8 @@ function obtenerPrecio()
     // Datos listos para usar
     $tipoCambioSunat = json_decode($response);
     if (isset($tipoCambioSunat->precioVenta)) {
+        // Almacenar en caché
+        file_put_contents($cacheFile, json_encode(['precioVenta' => $tipoCambioSunat->precioVenta]));
         return $tipoCambioSunat->precioVenta;
     } else {
         error_log('La respuesta de la API no contiene la propiedad precioVenta');

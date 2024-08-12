@@ -113,6 +113,7 @@
 </div>
 <!-- End Content -->
 
+<!-- Start Table Pendientes -->
 <div id="modalPedido" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -143,21 +144,21 @@
                             <h2 class="h5 mt-4 text-center">Completado</h2>
                         </div>
                     </div>
+
                     <div class="col-md-12">
                         <div class="table-responsive">
-                        <table class="table table-bordere table-striped table-hover align-middle" id = "tablePedidos" style="width: 100%;">
-                            <thead class="bg-success text-white">
-                                <tr>
-                                    <th class="text-center">Producto</th>
-                                    <th class="text-center">Precio</th>
-                                    <th class="text-center">Cantidad</th>
-                                    <th class="text-center">SubTotal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
+                            <table class="table table-bordered table-striped table-hover align-middle" id="tablePedidos" style="width: 100%">
+                                <thead class="bg-success text-white">
+                                    <tr>
+                                        <th class="text-center">Producto</th>
+                                        <th class="text-center">Precio</th>
+                                        <th class="text-center">Cantidad</th>
+                                        <th class="text-center">SubTotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -165,6 +166,7 @@
         </div>
     </div>
 </div>
+<!-- End Table Pendientes -->
 
 <?php include_once 'Views/template/footer.php'; ?>
 
