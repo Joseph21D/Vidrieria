@@ -60,7 +60,7 @@ $precioVenta = obtenerPrecio();
 if ($precioVenta !== null) {
     define('PRECIO', $precioVenta);
 } else {
-    define('PRECIO', 0);
+    define('PRECIO', 1);
     error_log('No se pudo definir la constante PRECIO');
 }
 ?>
