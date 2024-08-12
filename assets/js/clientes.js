@@ -10,11 +10,21 @@ document.addEventListener("DOMContentLoaded", function () {
       url: base_url + "/clientes/listarPendientes",
       dataSrc: "",
     },
-    columns: [{ data: "id_transaccion" }, { data: "monto" }, { data: "fecha" }, {data: "accion"}],
+    columns: [
+      { data: "id_transaccion" },
+      {
+        data: "monto",
+        render: function (data, type, row) {
+          return "<strong>$. </strong>" + data;
+        },
+      },
+      { data: "fecha" },
+      { data: "accion" },
+    ],
     layout: {
       top: ["pageLength", "buttons", "search"],
       topStart: null,
-      topEnd: null
+      topEnd: null,
     },
     buttons,
     language,
@@ -141,7 +151,7 @@ function registrarPedido(datos) {
   };
 }
 
-function verPedido(idPedido){
+function verPedido(idPedido) {
   var mPedido = new bootstrap.Modal(document.getElementById("modalPedido"));
   const url = base_url + "clientes/verPedido/" + idPedido;
   const http = new XMLHttpRequest();
@@ -152,7 +162,7 @@ function verPedido(idPedido){
       const res = JSON.parse(this.responseText);
       let html = "";
       res.productos.forEach((row) => {
-        let subTotal = parseFloat(row.precio)*parseInt(row.cantidad)
+        let subTotal = parseFloat(row.precio) * parseInt(row.cantidad);
         html += `<tr>
                     <td class="text-center">${row.producto}</td>
                     <td class="text-center">
@@ -161,18 +171,15 @@ function verPedido(idPedido){
                         }</span>
                     </td>
                     <td class="text-center">
-                        <span class="badge bg-primary">${
-                          row.cantidad
-                        }</span>
+                        <span class="badge bg-primary">${row.cantidad}</span>
                     </td>
                     <td class="text-center">
                         ${res.moneda + subTotal.toFixed(2)}
                     </td>
                 </tr>`;
       });
-      document.querySelector('#tablePedidos').innerHTML = html;
+      document.querySelector("#tablePedidos").innerHTML = html;
       mPedido.show();
     }
   };
- 
 }

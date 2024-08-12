@@ -7,14 +7,10 @@ class Principal extends Controller
         session_start();
     }
 
-    // Vista Principal
-    public function index()
-    {
-    }
-
     // Vista About
     public function about()
     {
+        $data['perfil'] = 'no';
         $data['title'] = 'Sobre Nosotros';
         $this->views->getView('principal', "about", $data);
     }
@@ -22,6 +18,7 @@ class Principal extends Controller
     // Vista Tienda
     public function shop($page)
     {
+        $data['perfil'] = 'no';
         $pagina = (empty($page)) ? 1 : $page;
         $porpagina = 15;
         $desde = ($pagina - 1) * $porpagina;
@@ -36,6 +33,7 @@ class Principal extends Controller
     // Vista Detalle Producto
     public function detail($id_producto)
     {
+        $data['perfil'] = 'no';
         $data['producto'] = $this->model->getProducto($id_producto);
         $id_categoria = $data['producto']['id_categoria'];
         $data['relacionados'] = $this->model->getAleatorios($id_categoria, $data['producto']['id']);
@@ -46,6 +44,7 @@ class Principal extends Controller
     // Vista Categorias Producto
     public function categorias($datos)
     {
+        $data['perfil'] = 'no';
         $id_categoria = 1;
         $page = 1;
         $array = explode(',', $datos);
@@ -76,13 +75,15 @@ class Principal extends Controller
     // Vista Contacto
     public function contact()
     {
-        $data['title'] = '------------';
+        $data['perfil'] = 'no';
+        $data['title'] = 'Contactos';
         $this->views->getView('principal', "contact", $data);
     }
 
     // Vista Lista Deseos
     public function deseo()
     {
+        $data['perfil'] = 'no';
         $data['title'] = 'Lista de Deseos';
         $this->views->getView('principal', "deseo", $data);
     }

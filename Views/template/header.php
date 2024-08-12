@@ -24,6 +24,9 @@
 
     <!-- PayPal -->
     <script src="https://www.paypal.com/sdk/js?client-id=<?php echo CLIENT_ID; ?>&currency=<?php echo MONEDAPAYPAL; ?>"></script>
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/d87593c422.js" crossorigin="anonymous"></script>
     <!--
     
 TemplateMo 559 Zay Shop
@@ -98,6 +101,7 @@ https://templatemo.com/tm-559-zay-shop
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fas fa-fw fa-search text-dark mr-2"></i>
                     </a>
+                    <?php if ($data['perfil'] == 'no') { ?>
                     <a class="nav-icon position-relative text-decoration-none" href="#" id="verCarrito">
                         <i class="fas fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark" id="btnCantidadCarrito">0</span>
@@ -106,9 +110,13 @@ https://templatemo.com/tm-559-zay-shop
                         <i class="fas fa-fw fa-heart text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark" id="btnCantidadDeseo">0</span>
                     </a>
+                    <?php } ?>
                     <?php if (!empty($_SESSION['correoCliente'])) { ?>
                         <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'clientes' ?>">
-                            <img class="img-thumbnail" src="<?php echo BASE_URL . 'assets/img/default.png' ?>" alt="Logo-Cliente" width="50">
+                            <img class="rounded" src="<?php echo BASE_URL . 'assets/img/default.png' ?>" alt="Logo-Cliente" width="30">
+                        </a>
+                        <a class="nav-icon position-relative text-decoration-none" href="<?php echo BASE_URL . 'clientes/salir' ?>">
+                            <i class="fa-solid fa-right-from-bracket"></i>
                         </a>
                     <?php } else { ?>
                         <a class="nav-icon position-relative text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">

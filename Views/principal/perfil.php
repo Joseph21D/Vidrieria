@@ -112,6 +112,7 @@
     <?php } ?>
 </div>
 <!-- End Content -->
+
 <div id="modalPedido" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -163,7 +164,9 @@
             </div>
         </div>
     </div>
-    <?php include_once 'Views/template/footer.php'; ?>
+</div>
+
+<?php include_once 'Views/template/footer.php'; ?>
 
 <script type="text/javascript" src="<?php echo BASE_URL . 'assets/DataTables/datatables.min.js'; ?>"></script>
 <script src="<?php echo BASE_URL . 'assets/js/es-ES.js'; ?> "></script>
