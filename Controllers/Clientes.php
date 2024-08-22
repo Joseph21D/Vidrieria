@@ -16,8 +16,7 @@ class Clientes extends Controller
     }
 
     // Vista Principal
-    public function index()
-    {
+    public function index(){
         if (empty($_SESSION['correoCliente'])) {
             header('Location: ' . BASE_URL);
         }
@@ -27,11 +26,16 @@ class Clientes extends Controller
         $this->views->getView('principal', "perfil", $data);
     }
 
-    public function registroDirecto()
-    {
+    public function registroDirecto(){
         if (isset($_POST['nombre']) && isset($_POST['clave'])) {
             if (empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['clave'])) {
                 $mensaje = array('msg' => 'Todos los campos son Requeridos', 'icono' => 'warning');
+            } elseif (!filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL)) {
+                $mensaje = array('msg' => 'El correo es inválido', 'icono' => 'warning');
+            } elseif(strlen($_POST['clave']) < 10){
+                $mensaje = array('msg' => 'La contraseña es muy corta. Min: 10', 'icono' => 'warning');
+            } elseif (!preg_match('/[a-zA-Z]/', $_POST['clave'])) {
+                $mensaje = array('msg' => 'La contraseña debe contener al menos una letra', 'icono' => 'warning');
             } else {
                 $nombre = $_POST['nombre'];
                 $correo = $_POST['correo'];
@@ -57,8 +61,7 @@ class Clientes extends Controller
         }
     }
 
-    public function enviarCorreo()
-    {
+    public function enviarCorreo(){
         if (isset($_POST['correo']) && isset($_POST['token'])) {
             $mail = new PHPMailer(true);
             try {
@@ -92,8 +95,7 @@ class Clientes extends Controller
         die();
     }
 
-    public function verificarCorreo($token)
-    {
+    public function verificarCorreo($token){
         $verificar = $this->model->getToken($token);
         if (!empty($verificar)) {
             $data = $this->model->actualizarVerify($verificar['id']);
@@ -101,8 +103,7 @@ class Clientes extends Controller
         }
     }
 
-    public function loginDirecto()
-    {
+    public function loginDirecto(){
         if (isset($_POST['correoLogin']) && isset($_POST['claveLogin'])) {
             if (empty($_POST['correoLogin']) || empty($_POST['claveLogin'])) {
                 $mensaje = array('msg' => 'Todos los campos son Requeridos', 'icono' => 'warning');
@@ -127,8 +128,7 @@ class Clientes extends Controller
         }
     }
 
-    public function registrarPedido()
-    {
+    public function registrarPedido(){
         $datos = file_get_contents("php://input");
         $json = json_decode($datos, true);
         $pedios = $json['pedios'];
@@ -161,8 +161,7 @@ class Clientes extends Controller
         die();
     }
 
-    public function listarPendientes()
-    {
+    public function listarPendientes(){
         $data = $this->model->getPedidos(1);
         for ($i=0; $i < count($data); $i++) { 
             $data[$i]['accion'] = '<div class="text-center"><button class="btn btn-primary" type="button" onclick="verPedido('.$data[$i]['id'].')"><i class="fas fa-eye"></i></button></div>';
