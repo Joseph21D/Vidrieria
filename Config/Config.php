@@ -26,7 +26,7 @@ function obtenerPrecio()
         return $data['precioVenta'];
     }
 
-    $token = 'apis-token-9909.jpXtIt8AmFDw5ANLJNgr--hyddAOGXr7';
+    $token = 'apis-token-10072.aFQvPFfp3kYIosN4s9KmYOci0ETgGX9Z';
     $fecha = date('Y-m-d');
 
     // Iniciar llamada a API
